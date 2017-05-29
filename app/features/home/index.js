@@ -1,10 +1,11 @@
 'use strict';
 
-const Home = resolve => require(['features/home/home.js'], m => resolve(m.default));
-
 const home = {
+    name: 'home',
     path: '/', 
-    component: Home
+    component: resolve => require(
+            ['features/home/home.vue'], resolve
+        )
 }
 
 export default home;
