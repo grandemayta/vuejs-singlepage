@@ -34,11 +34,14 @@ module.exports = {
 	      	}
 		]
 	},
+	devServer: {
+        historyApiFallback: true
+    },
     plugins: [
         new HtmlWebpackPlugin({
             template: 'index.template.ejs',
-            inject: false,
-            hash: false
+            inject: true,
+            hash: true
         }),
 
         new Webpack.optimize.CommonsChunkPlugin({

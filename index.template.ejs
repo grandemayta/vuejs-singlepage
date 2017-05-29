@@ -8,15 +8,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta name="format-detection" content="telephone=no"/>
         <meta name="msapplication-tap-highlight" content="no"/>
+        
+        <base href="/"/>
 
     </head>
     <body>
 
-        <div id="app"></div>
-
-        <% for (var chunk in htmlWebpackPlugin.files.chunks) { %>
-            <script defer src="<%= htmlWebpackPlugin.files.chunks[chunk].entry %>"></script>
-        <% } %>
+        <router-view id="app"></router-view>
 
     </body>
 </html>
