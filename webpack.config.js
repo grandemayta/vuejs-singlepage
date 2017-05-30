@@ -10,7 +10,8 @@ module.exports = {
 		app: appPath + '/core',
 		vendor: [
             'vue',
-            'vue-router'
+            'vue-router',
+			'vue-resource'
         ]
 	},
 	output: {
@@ -55,7 +56,8 @@ module.exports = {
 		alias: {
 			'vue': 'vue/dist/vue',
 			'configs': appPath + '/core/configs',
-            'features': appPath + '/features'
+            'features': appPath + '/features',
+			'commons': appPath + '/commons'
         }
 	}
 }

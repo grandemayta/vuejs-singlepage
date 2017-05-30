@@ -1,6 +1,6 @@
 'use strict';
 
-import router                             from "configs/routes";
+import router                             from "configs/router";
 
 
 const transitions = router.beforeResolve((to, from, next) => {

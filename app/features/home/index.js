@@ -1,11 +1,15 @@
 'use strict';
 
+import { header }                       from "commons";
+
+
 const home = {
     name: 'home',
     path: '/', 
-    component: resolve => require(
-            ['features/home/home.vue'], resolve
-        )
+    components: {
+        default: resolve => require(['features/home/home.vue'], resolve),
+        header: header
+    }
 }
 
 export default home;
