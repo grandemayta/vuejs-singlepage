@@ -9,6 +9,6 @@ const detail = {
         default: resolve => require(['features/detail/detail.vue'], resolve),
         header: header
     }
-}
+};
 
 export default detail;

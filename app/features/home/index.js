@@ -10,6 +10,6 @@ const home = {
         default: resolve => require(['features/home/home.vue'], resolve),
         header: header
     }
-}
+};
 
 export default home;
