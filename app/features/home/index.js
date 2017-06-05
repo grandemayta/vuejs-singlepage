@@ -7,7 +7,9 @@ const home = {
     name: 'home',
     path: '/', 
     components: {
-        default: resolve => require(['features/home/home.vue'], resolve),
+        default: resolve => require([
+            './components/default/home-default-component.vue'
+        ], resolve),
         header: header
     }
 };

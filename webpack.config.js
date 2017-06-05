@@ -1,4 +1,5 @@
 const Webpack                                  = require('webpack');
+const ExtractTextPlugin												 = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin                       = require('clean-webpack-plugin');
 const HtmlWebpackPlugin                        = require("html-webpack-plugin");
 const path  	                                 = require('path');
@@ -7,6 +8,7 @@ const distPath                                 = path.join(__dirname, './dist');
 
 
 module.exports = {
+
 	entry: {
 		app: appPath + '/core',
 		vendor: [
@@ -15,32 +17,36 @@ module.exports = {
 			'vue-resource'
     ]
 	},
+
 	output: {
 		path: distPath,
 		filename: 'bundle.app.js'
 	},
+
 	module: {
 		rules: [
-			{
-		  	test: /\.vue$/,
-		    loader: 'vue-loader',
-				options: {
-					loaders: {
-						'scss': 'vue-style-loader!css-loader!sass-loader'
-					}
-				},
-				exclude: /node_modules/
-	    },
 			{
 				test: /\.js$/,
 				loader: 'babel-loader',
 				exclude: /node_modules/
+			},
+			{
+					test: /\.vue$/,
+					loader: 'vue-loader',
+					exclude: /node_modules/
+			},
+			{
+					test: /\.scss$/,
+					loader: ExtractTextPlugin.extract("css-loader!sass-loader"),
+					exclude: /node_modules/
 			}
 		]
 	},
+
 	devServer: {
 		historyApiFallback: true
   },
+
 	plugins: [
 
 			new HtmlWebpackPlugin({
@@ -53,22 +59,27 @@ module.exports = {
 					name: 'vendor',
 					filename: 'bundle.vendor.js',
 					minChunks: Infinity
-			})
+			}),
+
+			new ExtractTextPlugin("style.css")
 
 	],
+
   resolve: {
 		modules: ['node_modules'],
 		alias: {
-			'vue': 'vue/dist/vue.esm',
+			'vue': 'vue/dist/vue',
 			'configs': appPath + '/core/configs',
       'features': appPath + '/features',
 			'commons': appPath + '/commons'
     }
 	}
+
 };
 
 
 if (process.env.NODE_ENV === 'production') {
+
   module.exports.plugins = (module.exports.plugins || []).concat([
 
 		new CleanWebpackPlugin([distPath], {
@@ -95,4 +106,5 @@ if (process.env.NODE_ENV === 'production') {
     })
 
   ]);
+
 }
